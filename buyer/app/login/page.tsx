@@ -8,8 +8,7 @@ export default function Home() {
       <div className="flex flex-col items-center gap-4 min-w-[360px] w-[360px]">
         <p>Talaport</p>
 
-        <p>Get started</p>
-        <p>Create your account now </p>
+        <p>Welcome Back</p>
         <Input className="w-full" />
         <Input className="w-full" />
         <Button className="w-full">Login</Button>
