@@ -1,47 +1,32 @@
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full h-screen flex justify-center items-center">
       <div className="flex flex-col items-center gap-4 min-w-[360px] w-[360px]">
-        <p>Talaport</p>
+        <p className="text-5xl font-black text-[#22583F]">Talaport</p>
 
-        <p>Welcome to PayPort</p>
-        <Input className="w-full" placeholder="First Name" />
-        <Input className="w-full" placeholder="Last Name" />
-        <Input className="w-full" placeholder="Email" />
-        <Input className="w-full" placeholder="Password" type="password" />
-        <Input
-          className="w-full"
-          placeholder="Confirm Password"
-          type="password"
-        />
+        <p>Let's get started!</p>
+        <Input className="w-full" type="text" name="emailadd" placeholder="First Name" />
+        <Input className="w-full" type="text" name="emailadd" placeholder="Last Name" />
+        <Input className="w-full" type="email" name="emailadd" placeholder="Email" />
+        <Input className="w-full" type="password" name="pass" placeholder="Password"/>
+        <Input className="w-full" type="password" name="pass" placeholder=" Confirm Password"/>
+        <Button className="w-full bg-[#C2E96A] text-[#22583F]">Sign up</Button>
 
-        <div className="items-top flex space-x-2">
-          <Checkbox id="terms1" />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="terms1"
-              className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms and conditions
-            </label>
-            <p className="text-xs text-muted-foreground">
-              I agree with PayPort’s Terms of Service and Privacy Policy.
-            </p>
-          </div>
-        </div>
-
-        <Button className="w-full">Sign Up</Button>
-
-        <p>
-          Already have an account? <span>Sign In</span>
+        <p className="text-xs font-thin">
+        By signing up, you agree to our <span className="text-[#22583F] font-normal">Terms of service </span> and <span className="text-[#22583F] font-normal">Privacy policy.</span> 
         </p>
 
-        <Button className="w-full">Sign In with Google</Button>
+        <p className="text-xs font-extralight"> ── or ── </p>
+        <Button className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]">Sign up with Google</Button>
+        <Button className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]">Sign up with Wallet</Button>
+
+        <p className="text-xs font-thin">
+          Already have an account? <span className="text-[#22583F] font-normal">Login</span>
+        </p>
       </div>
     </div>
   );
