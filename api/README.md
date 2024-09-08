@@ -1,6 +1,9 @@
 # express-boilerplate
 
+<!-- REDEPLOY -->
+
 ## Connect to Mongodb
+
 - Duplicate sample env to env
 - Configure env to your environment
 - Run `npm i`
@@ -15,21 +18,21 @@
 
 ```javascript
 rsconf = {
-  _id: "rsmongo",
+  _id: 'rsmongo',
   members: [
     {
       _id: 0,
-      host: "mongodb1:27017",
+      host: 'mongodb1:27017',
       priority: 4,
     },
     {
       _id: 1,
-      host: "mongodb2:27017",
+      host: 'mongodb2:27017',
       priority: 2,
     },
     {
       _id: 2,
-      host: "mongodb3:27017",
+      host: 'mongodb3:27017',
       priority: 1,
     },
   ],
