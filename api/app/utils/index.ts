@@ -3,8 +3,9 @@ import generateAccess from './generateAccess';
 import generateToken from './generateToken';
 import generateRefresh from './generateRefresh';
 import getFilterQuery from './getFilterQuery';
-
-import { NETWORK } from '../env/web3';
+import nacl from 'tweetnacl';
+import { PublicKey } from '@solana/web3.js';
+import { decodeUTF8, decodeBase64 } from 'tweetnacl-util';
 
 export function generateRandomSalt(min: number = 100_000_000_000, max: number = 999_999_999_999) {
   // if (NETWORK === 'SKYSHARES' || NETWORK === 'SEPOLIA') {
@@ -25,6 +26,13 @@ export function generateUniqueTwoDigitNumbers(numbers: Set<string> = new Set<str
     generateUniqueTwoDigitNumbers(temp);
   }
   return Array.from(numbers);
+}
+export function verifySignature(signature: string, walletAddress: string) {
+  const message = 'The quick brown fox jumps over the lazy dog';
+  const messageBytes = decodeUTF8(message);
+  const signatureDecoded = decodeBase64(signature) as Uint8Array;
+
+  return nacl.sign.detached.verify(messageBytes, signatureDecoded, new PublicKey(walletAddress).toBytes());
 }
 
 export { getFilterQuery, generateAccess, generateToken, generateRefresh, transaction };

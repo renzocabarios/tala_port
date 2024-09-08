@@ -17,6 +17,7 @@ const schema = new Schema(
     },
     walletAddress: {
       type: String,
+      unique: true,
     },
     email: {
       type: String,

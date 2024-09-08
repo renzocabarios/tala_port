@@ -1,10 +1,15 @@
 import usersRoute from './users/route';
+import authRoute from './auth/route';
 import { IRoutes, IRoute } from '../../types';
 
 const routes: IRoutes = [
   {
     url: 'users',
     route: usersRoute,
+  },
+  {
+    url: 'auth',
+    route: authRoute,
   },
 ];
 
