@@ -1,23 +1,23 @@
-name: Backend CI/CD
+name: Seller
 
 on:
   push:
     branches:
       - main
     paths:
-      - "api/**"
+      - "seller/**"
   pull_request:
     branches:
       - main
     paths:
-      - "api/**"
+      - "seller/**"
 
 defaults:
   run:
-    working-directory: ./api
+    working-directory: ./seller
 
 env:
-  IMAGE_NAME: tala_port_api
+  IMAGE_NAME: tala_port_seller
 
 jobs:
   publish:
@@ -43,7 +43,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./api
+          context: ./seller
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 
@@ -59,6 +59,6 @@ jobs:
   #         key: ${{ secrets.DIGITALOCEAN_SSH_KEY }}
   #         script: |
   #           ls
-  #           cd ./api
+  #           cd ./seller
   #           ./deploy.ssh
   #           docker ps
