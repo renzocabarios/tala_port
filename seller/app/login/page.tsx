@@ -2,10 +2,31 @@
 import ConnectWallet from "@/components/connect-wallet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import useCreateAccount from "@/hooks/useCreateAccount";
-
+import useAuthByWallet from "@/hooks/useAuthByWallet";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useToast } from "@/components/hooks/use-toast";
 export default function Home() {
-  const { mutate } = useCreateAccount();
+  const { mutate, isSuccess, isError } = useAuthByWallet();
+  const { toast } = useToast();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: "Server Error",
+        description: "Please contact our customer support",
+      });
+    }
+  }, [isError, toast]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/home");
+    }
+  }, [isSuccess, router]);
 
   const onLoginWithWallet = () => {
     mutate();
@@ -43,7 +64,9 @@ export default function Home() {
         {/* end of login form */}
         <p className="text-xs font-thin">
           Dont have an account?{" "}
-          <span className="text-[#22583F] font-normal">Sign Up</span>
+          <span className="text-[#22583F] font-normal">
+            <Link href={"/register"}> Sign Up</Link>
+          </span>
         </p>
       </div>
     </div>

@@ -1,8 +1,22 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
+import useCreateAccount from "@/hooks/useCreateAccount";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+export default function Register() {
+  const { mutate, isSuccess } = useCreateAccount();
+  const router = useRouter();
 
-export default function Home() {
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/login");
+    }
+  }, [isSuccess, router]);
+
+  const onLoginWithWallet = () => {
+    mutate();
+  };
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <div className="flex flex-col items-center gap-4 min-w-[360px] w-[360px]">
@@ -52,7 +66,10 @@ export default function Home() {
         <Button className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]">
           Sign up with Google
         </Button>
-        <Button className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]">
+        <Button
+          onClick={onLoginWithWallet}
+          className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]"
+        >
           Sign up with Wallet
         </Button>
 

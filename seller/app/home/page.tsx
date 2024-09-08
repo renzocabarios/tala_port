@@ -17,9 +17,9 @@ export default function Home() {
       <div className="flex flex-col items-center gap-5 w-full max-w-[360px]">
         {/* Logo and Header */}
         <div className="p-2 w-full flex items-center">
-          <Image src="/logo.png" alt="Logo" width={20} height={20} />
+          {/* <Image src="/logo.png" alt="Logo" width={20} height={20} /> */}
           <p className="ml-2 text-s font-bold text-[#22583F]">
-            {"Jay&apos;s Sari Sari Store"}
+            Jay&apos;s Sari Sari Store
           </p>
         </div>
 
