@@ -50,7 +50,7 @@ export default function Home() {
           name="pass"
           placeholder="Password"
         />
-        c<Button className="w-full bg-[#C2E96A] text-[#22583F]">Login</Button>
+        <Button className="w-full bg-[#C2E96A] text-[#22583F]">Login</Button>
         <p className="text-xs font-extralight"> ── or ── </p>
         <Button className="w-full border border-[#0D0818] bg-[#FCFAFF] text-[#CAC8CC]">
           Login with Google
