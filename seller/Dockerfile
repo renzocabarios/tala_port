@@ -36,7 +36,7 @@ RUN pnpm build
 FROM base AS runner
 
 # Set NODE_ENV to production
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
 # Disable Next.js telemetry
 # Learn more here: https://nextjs.org/telemetry
