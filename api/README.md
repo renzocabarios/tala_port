@@ -1,7 +1,5 @@
 # express-boilerplate
 
-<!-- Redeploy -->
-
 ## Connect to Mongodb
 
 - Duplicate sample env to env
