@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn nodemon ./index.ts",
-    "test": "yarn jest",
+    "dev": "pnpm nodemon ./index.ts",
+    "test": "pnpm jest",
     "start": "node ./dist/index.js",
     "format": "npx prettier --write .",
-    "build": "yarn tsc"
+    "build": "pnpm tsc"
   },
   "dependencies": {
     "@solana/web3.js": "^1.95.3",
