@@ -31,8 +31,7 @@ export default function useAuthByWallet() {
           throw Error();
         }
       }
-
-      return null;
+      throw Error();
     },
   });
 

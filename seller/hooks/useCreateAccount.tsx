@@ -30,7 +30,7 @@ export default function useCreateAccount() {
         });
       }
 
-      return null;
+      throw Error();
     },
   });
 
