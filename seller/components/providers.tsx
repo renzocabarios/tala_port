@@ -7,6 +7,13 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { BitgetWalletAdapter } from "@solana/wallet-adapter-wallets";
+import {
+  SolanaMobileWalletAdapter,
+  createDefaultAddressSelector,
+  createDefaultAuthorizationResultCache,
+  createDefaultWalletNotFoundHandler,
+} from "@solana-mobile/wallet-adapter-mobile";
 import { clusterApiUrl } from "@solana/web3.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -23,7 +30,22 @@ export default function Providers({ children }: IProvidersProps) {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={[]} autoConnect>
+      <WalletProvider
+        wallets={[
+          new BitgetWalletAdapter(),
+          new SolanaMobileWalletAdapter({
+            addressSelector: createDefaultAddressSelector(),
+            appIdentity: {
+              name: "My app",
+              uri: "https://talaport.com",
+            },
+            authorizationResultCache: createDefaultAuthorizationResultCache(),
+            cluster: WalletAdapterNetwork.Devnet,
+            onWalletNotFound: createDefaultWalletNotFoundHandler(),
+          }),
+        ]}
+        autoConnect
+      >
         <WalletModalProvider>
           <QueryClientProvider client={queryClient}>
             {children}
