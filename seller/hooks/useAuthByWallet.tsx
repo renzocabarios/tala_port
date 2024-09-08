@@ -30,6 +30,8 @@ export default function useAuthByWallet() {
         if (response.data.status === "fail") {
           throw Error();
         }
+
+        return response;
       }
       throw Error();
     },
