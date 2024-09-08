@@ -4,6 +4,9 @@ FROM node:20-alpine AS deps
 # Install pnpm globally
 RUN npm install -g pnpm
 
+# Install build dependencies (g++, make, python3)
+RUN apk add --no-cache g++ make python3
+
 # Set working directory
 WORKDIR /app
 
@@ -11,7 +14,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies using pnpm
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 # Stage 2: Build the app
 FROM node:20-alpine AS builder
