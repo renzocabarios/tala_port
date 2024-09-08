@@ -47,7 +47,8 @@ COPY --from=builder /app/.next/standalone ./
 EXPOSE 3000
 
 # Define environment variables
-ENV PORT 3000
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
 # Start the application using the built files
 CMD ["node", "server.js"]
