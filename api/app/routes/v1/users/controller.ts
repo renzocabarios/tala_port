@@ -5,6 +5,8 @@ import { Request, Response } from 'express';
 import nacl from 'tweetnacl';
 import { PublicKey } from '@solana/web3.js';
 import { decodeUTF8, decodeBase64 } from 'tweetnacl-util';
+import bcrypt from 'bcrypt';
+import ENV from '../../../env/index';
 
 const getAll = async (_req: Request, _res: Response) => {
   const { page = 1, limit = 10, populate = '' } = _req.query;
@@ -64,6 +66,21 @@ const getById = async (_req: Request, _res: Response) => {
 };
 
 const add = async (_req: Request, _res: Response) => {
+  const session: ClientSession = await startSession();
+  const { password, ...res } = _req.body;
+  const hashed = await bcrypt.hash(password, ENV.HASH_SALT);
+  _res.send(
+    await transaction(
+      session,
+      async () => {
+        return await service.add({ password: hashed, ...res }, session);
+      },
+      'Create user',
+    ),
+  );
+};
+
+const addByWallet = async (_req: Request, _res: Response) => {
   const session: ClientSession = await startSession();
   const { walletAddress, signature } = _req.body;
 
@@ -129,4 +146,4 @@ const removeOne = async (_req: Request, _res: Response) => {
   );
 };
 
-export { getAll, getById, add, update, removeOne, getByWalletAddress };
+export { getAll, getById, add, update, removeOne, getByWalletAddress, addByWallet };

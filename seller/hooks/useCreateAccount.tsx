@@ -24,7 +24,7 @@ export default function useCreateAccount() {
       if (signMessage && publicKey) {
         const signature = await signMessage(messageBytes);
 
-        return await API_INSTANCE.post("api/v1/users", {
+        return await API_INSTANCE.post("api/v1/users/wallet", {
           signature: encodeBase64(signature),
           walletAddress: publicKey,
         });
